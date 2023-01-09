@@ -3,6 +3,7 @@ module github.com/salehWeb/chat-app/server
 go 1.19
 
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	gorm.io/driver/postgres v1.4.6
 	gorm.io/gorm v1.24.3
 )

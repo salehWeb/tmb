@@ -3,16 +3,16 @@ package main
 import (
 	"fmt"
 
+	"github.com/salehWeb/chat-app/server/helpers"
 	"github.com/salehWeb/chat-app/server/initializers"
+	"github.com/salehWeb/chat-app/server/routes"
 )
 
-func init() {
-	fmt.Printf("Hello World 1\n\n")
-	initializers.GetENV()
-	db := initializers.ConnectToDatabase(string(initializers.ENV["FUCK"]))
-	fmt.Println(db)
-}
-
 func main() {
-	fmt.Printf("Hello World 2\n\n")
+	initializers.GetENV()
+	initializers.ConnectToDatabase()
+	fmt.Println(helpers.NewToken())
+
+	routes.HandelRoutes()
+	initializers.Listen()
 }
