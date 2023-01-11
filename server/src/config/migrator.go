@@ -3,7 +3,7 @@ package config
 import (
 	"fmt"
 
-	"github.com/salehWeb/chat-app/server/models"
+	"github.com/salehWeb/chat-app/server/src/models"
 	"gorm.io/gorm"
 )
 

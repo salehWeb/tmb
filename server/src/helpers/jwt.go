@@ -13,8 +13,6 @@ var secretKey []byte
 
 func NewToken() string {
 
-
-
 	if len(os.Getenv("SECRET_KEY")) > 1 {
 		secretKey = []byte(os.Getenv("SECRET_KEY"))
 	} else {

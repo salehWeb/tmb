@@ -1,0 +1,6 @@
+{
+    "watch": ["src", "main.go"],
+    "ext": ".go",
+    "ignore": [],
+    "exec": "go run main.go"
+}

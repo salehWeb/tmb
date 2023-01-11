@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/salehWeb/chat-app/server/config"
+	"github.com/salehWeb/chat-app/server/src/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
