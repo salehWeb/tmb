@@ -1,4 +1,4 @@
-package config
+package routes
 
 import (
 	"net/http"
@@ -10,4 +10,3 @@ import (
 func HandelRoutes() {
 	http.HandleFunc("/api/sing-up/", controllers.SingUpControllers)
 }
-

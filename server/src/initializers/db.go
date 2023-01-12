@@ -9,7 +9,9 @@ import (
 	"gorm.io/gorm"
 )
 
-func ConnectToDatabase() *gorm.DB {
+var DB *gorm.DB
+
+func ConnectToDatabase()  {
 	var connection string = os.Getenv("CONNECTION_STRING")
 
 	if len(connection) < 2 {
@@ -23,7 +25,7 @@ func ConnectToDatabase() *gorm.DB {
 		panic(fmt.Sprintf("\n\n\n\nError Connecting To DataBase error: %s\n\n\n", err))
 	}
 
-	go config.Migrator(db)
+	DB = db
 
-	return db
+	go config.Migrator(db)
 }

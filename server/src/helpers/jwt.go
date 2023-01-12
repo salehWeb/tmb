@@ -9,11 +9,12 @@ import (
 )
 
 
-func NewToken() string {
+func NewToken(id uint) string {
 	tokenConfig := jwt.New(jwt.SigningMethodHS256)
 
 	claims := tokenConfig.Claims.(jwt.MapClaims)
 	claims["exp"] = time.Now().Add(time.Duration(time.Now().Year())).Unix()
+	claims["id"] = id
 
 	token, err := tokenConfig.SignedString(GetSecretKey())
 

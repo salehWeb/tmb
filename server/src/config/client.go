@@ -10,7 +10,7 @@ import (
 var ClientRoutes [2]string = [2]string{"/", "/login/"}
 
 func UseClient() {
-	fs := http.FileServer(http.Dir("./dist"))
+	fs := http.FileServer(http.Dir("./dist/assets"))
 	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
 
 	for i := 0; i < len(ClientRoutes); i++ {
