@@ -33,4 +33,10 @@ func SingUpControllers(w http.ResponseWriter, r *http.Request) {
 
 		return
 	}
+
+
+	if r.Method == http.MethodGet {
+		err.BadRequest("It Should Be true", w)
+		return
+	}
 }

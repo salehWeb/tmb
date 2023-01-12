@@ -1,39 +1,11 @@
-package helpers
+package middleware
 
 import (
-	"fmt"
 	"net/http"
-	"os"
-	"time"
 
 	"github.com/dgrijalva/jwt-go"
+	"github.com/salehWeb/chat-app/server/src/helpers"
 )
-
-var secretKey []byte
-
-func NewToken() string {
-
-	if len(os.Getenv("SECRET_KEY")) > 1 {
-		secretKey = []byte(os.Getenv("SECRET_KEY"))
-	} else {
-		fmt.Println("No SECRET KEY Found For Jwt Will Use \"Hello World\" as SECRET KEY")
-		secretKey = []byte("Hello World")
-	}
-
-	tokenConfig := jwt.New(jwt.SigningMethodHS256)
-
-	claims := tokenConfig.Claims.(jwt.MapClaims)
-	claims["exp"] = time.Now().Add(time.Duration(time.Now().Year())).Unix()
-
-	token, err := tokenConfig.SignedString(secretKey)
-
-	if err != nil {
-		panic(err)
-	}
-
-	return token
-}
-
 
 func Authorized(next func(w http.ResponseWriter, r *http.Request)) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -51,7 +23,7 @@ func Authorized(next func(w http.ResponseWriter, r *http.Request)) http.Handler 
 				w.Write([]byte("User is UnAuthorized"))
 			}
 
-			return secretKey, nil
+			return helpers.GetSecretKey(), nil
 		})
 
 		if err != nil {

@@ -7,8 +7,8 @@ import (
 
 func main() {
 	initializers.GetENV()
-	initializers.ConnectToDatabase()
-
+	// initializers.ConnectToDatabase()
+	config.UseClient()
 	config.HandelRoutes()
 	initializers.Listen()
 }
