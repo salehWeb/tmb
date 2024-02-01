@@ -47,12 +47,9 @@ func serveWS(pool *Pool, w http.ResponseWriter, r *http.Request) {
 	client.Read()
 }
 
-func UseSocket() *http.ServeMux  {
+func UseSocket() {
     pool := NewPool()
     go pool.Start()
 
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) { serveWS(pool, w, r) })
-
-	return mux
+	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) { serveWS(pool, w, r) })
 }

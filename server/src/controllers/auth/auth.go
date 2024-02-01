@@ -22,6 +22,9 @@ type User struct {
 	LastName  string `json:"lastName"`
 }
 
+func Test(w http.ResponseWriter, r *http.Request) {
+	helpers.Ok(nil, "test hello world", w)
+}
 
 func SingUp(w http.ResponseWriter, r *http.Request) {
 	bytes, err := io.ReadAll(r.Body)
