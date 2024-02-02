@@ -2,7 +2,6 @@ package middleware
 
 import (
 	"compress/gzip"
-	"log"
 	"net/http"
 	"strings"
 )
@@ -19,7 +18,6 @@ func (grw gzipResponseWriter) Write(b []byte) (int, error) {
 func GzipHandler(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if strings.Contains(r.Header.Get("Accept-Encoding"), "gzip") {
-			log.Printf("gziping for requset %s", r.URL.Path)
 			w.Header().Set("Content-Encoding", "gzip")
 
 			gzw := gzip.NewWriter(w)

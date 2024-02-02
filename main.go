@@ -14,11 +14,9 @@ import (
 func main() {
 	initializers.GetENV()
 	initializers.InitClient()
-
 	http.Handle("/", middleware.GzipHandler(routes.HandelClient()))
 	http.Handle("/assets/", middleware.GzipHandler(http.FileServer(http.Dir("./dist"))))
 	http.Handle("/api/", middleware.GzipHandler(routes.HandelRoutes()))
-
 	socket.UseSocket()
 
 	log.Fatal(http.ListenAndServe(helpers.GetAddress(), nil))

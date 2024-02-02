@@ -9,11 +9,11 @@ import (
 )
 
 func InitClient() {
-	helpers.CopyDir("../client/public", "./dist/assets")
-	helpers.CopyFile("../client/index.html", "./dist/index.html")
+	helpers.CopyDir("./client/public", "./dist/assets")
+	helpers.CopyFile("./client/index.html", "./dist/index.html")
 
 	context, err := api.Context(api.BuildOptions{
-		EntryPoints: []string{"../client/src/main.tsx"},
+		EntryPoints: []string{"./client/src/main.tsx"},
 		Splitting:   true,
 		KeepNames:   true,
 		AssetNames:  "[name]",

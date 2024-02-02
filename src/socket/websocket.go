@@ -9,13 +9,15 @@ import (
 	"github.com/salehWeb/chat-app/server/src/helpers"
 )
 
-var upGrader = websocket.Upgrader{
-	ReadBufferSize:  1024,
-	WriteBufferSize: 1024,
-}
 
 func Upgrade(w http.ResponseWriter, r *http.Request) (*websocket.Conn, error) {
-	upGrader.CheckOrigin = func(r *http.Request) bool { return true }
+
+	// handshake 101
+	upGrader := websocket.Upgrader{
+		CheckOrigin: func(r *http.Request) bool { return true },
+	}
+
+	// set headers and return the socket connection
 	conn, err := upGrader.Upgrade(w, r, nil)
 
 	if err != nil {
@@ -28,8 +30,7 @@ func Upgrade(w http.ResponseWriter, r *http.Request) (*websocket.Conn, error) {
 
 
 func serveWS(pool *Pool, w http.ResponseWriter, r *http.Request) {
-	fmt.Println("websocket endpoint reached")
-
+	// runs for every client at first handshake
 	conn, err := Upgrade(w, r)
 
 	if err != nil {
